@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width= <h1>########## Avaliação de Disciplina ##########</h1>
+    <h2>Média da turma: <span id="mediaTurma"></span></h2>
+    <h2>Maior média da turma: <span id="mediaMaior"></span></h2>
+    <h2>Menor média da turma: <span id="mediaMenor"></span></h2>
+    <h2>Total de alunos aprovados: <span id="tAprovados"></span></h2>
+    <h2>Total de reprovados por falta: <span id="reprovadosFalta"></span></h2>
+    <h2>Total de reprovados por nota: <span id="reprovadosNota"></span></h2>
+    <br>
+    <h3 id="msg"></h3>
+
+    <script>
+        let msg = "";
+        let mediaTurma = 0;
+        let mediaMaior = 0;
+        let mediaMenor = 0;
+        let tAprovados = 0;
+        let reprovadosFalta = 0;
+        let reprovadosNota = 0;
+        let continuar = "";
+        let totalAlunos = 0;
+        let mediaTotal = 0;
+        let contador = 1;
+
+        do{
+            let situacao = "";
+            let requisito1 = Boolean();
+            let requisito2 = Boolean();
+            let nome = prompt("Digite o nome do aluno");
+            let nMatricula = prompt("Digite o número da mátricula do aluno");
+            let nota1 = Number(prompt("Digite a primeira nota"));
+            let nota2 = Number(prompt("Digite a segunda nota"));
+            let nota3 = Number(prompt("Digite a terceira nota"));
+            let aulasFrequentadas = (Number(prompt("Digite a quantidade de aulas frequentadas, sendo o total de 32 aulas")));
+            let frequencia = (aulasFrequentadas / 32).toFixed(2);
+
+            let media = (nota1 + nota2 + nota3) / 3;
+
+
+            mediaTotal += media;
+
+            //Definindo a maior média
+            if (media > mediaMaior){
+                mediaMaior = media;
+            }
+            //Definindo a menor média pela primeira vez
+            if (contador == 1){
+                mediaMenor = media
+                contador++;
+            }
+            //Definindo a menor média 
+            
+            if (media < mediaMenor){
+                mediaMenor = media;
+            }
+
+            //Verificar situação por média. Incrementando a váriavel reprovadosNota
+            if (media >= 7){
+                requisito1 = true;
+            }else{
+                requisito1 = false;
+                situacao = "Reprovado por Nota";
+                reprovadosNota++;
+            }
+
+            //Verificar a situação por frequência. Incrementando a váriavel reprovadosFalta
+            if (frequencia > 0.8){
+                requisito2 = true;
+            }else{
+                requisito2 = false;
+                situacao = "Reprovado por Falta";
+                reprovadosFalta++;
+            }
+
+            //Verificando as duas situações. Incrementando a váriavel tAprovados
+            if (requisito1 && requisito2){
+                situacao = "Aprovado";
+                tAprovados++;
+            }else if (!requisito1 && !requisito2){
+                situacao = "Reprovado por Falta e Nota"
+            }
+    
+            //Definindo mensagem individual de cada aluno
+            msg += "###################################################################################################################" + "<br>";
+            msg += ("Aluno: " + nome + "|| Mátricula: " + nMatricula + "|| Média: " + media.toFixed(1) + "|| Aulas Comparecidas: " + aulasFrequentadas + "|| Frequencia: "
+            + (frequencia * 100) + "%" + "|| Situação: " + situacao + "<br>");
+
+
+            //Definindo o total de alunos
+            totalAlunos++;
+
+            continuar = prompt("Deseja continuar? [s/n]");
+
+            
+        }while (continuar == "s")
+
+        //Media da turma
+        mediaTurma = (mediaTotal / totalAlunos)
+
+        document.getElementById("mediaTurma").innerHTML = mediaTurma.toFixed(1);
+        document.getElementById("mediaMaior").innerHTML = mediaMaior.toFixed(1);
+        document.getElementById("mediaMenor").innerHTML = mediaMenor.toFixed(1);
+        document.getElementById("tAprovados").innerHTML = tAprovados;
+        document.getElementById("reprovadosFalta").innerHTML = reprovadosFalta;
+        document.getElementById("reprovadosNota").innerHTML = reprovadosNota;
+        document.getElementById("msg").innerHTML = msg;, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>

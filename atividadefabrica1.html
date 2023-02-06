@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>###### Produção de Peças ######</h1>
+    <h2>Total de Peças Aprovadas: <span id="qAprovadas"></span></h2>
+    <h2>Total de Peças Reprovadas: <span  id="qReprovadas"></span></h2>
+    <h2>Número das peças Reprovadas: <span  id="nReprovadas"></span></h2>
+    <h2>Total de peças: <span id="total"></span></h2>
+
+    <script>
+        let total = 0;
+        let qAprovadas = 0;
+        let qReprovadas = 0;
+
+        let situacao, numeroPeca, continuar = "";
+        let nReprovadas = ""
+
+        do{
+            numeroPeca = prompt("Digite o número da peça");
+            situacao = prompt("Digite a situação da peça\n1 - Aprovada\n2 - Reprovada");
+            total++;
+            if (situacao == '1'){
+                qAprovadas++;
+            }else if(situacao == '2'){
+                qReprovadas++;
+                nReprovadas = nReprovadas + numeroPeca + ", ";
+            }
+            continuar = prompt("Deseja continuar? [s/n]")
+        }while (continuar == "s")
+
+        //Levando as váriaveis para o HTML
+        document.getElementById("qAprovadas").innerHTML = qAprovadas;
+        document.getElementById("qReprovadas").innerHTML = qReprovadas;
+        document.getElementById("nReprovadas").innerHTML = nReprovadas;
+        document.getElementById("total").innerHTML = total;
+    
+</body>
+</html>
